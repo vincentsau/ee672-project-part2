@@ -25,4 +25,9 @@ RUN mkdir atlas_build
 WORKDIR /opt/atlas_src/atlas_build
 RUN ../configure -b 64 -D c -DPentiumCPS=2593 -Fa alg -fPIC --with-netlib-lapack-tarfile=/opt/lapack-3.7.0.tgz --prefix=/opt/atlas
 RUN make build
+RUN make check
+RUN make time
+RUN make install
 
+#install cvxopt
+WORKDIR /opt
