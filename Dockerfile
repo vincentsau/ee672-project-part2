@@ -31,4 +31,10 @@ RUN make install
 
 #install cvxopt
 WORKDIR /opt
-RUN wget
+RUN wget https://codeload.github.com/cvxopt/cvxopt/zip/master
+RUN mv master cvxopt-master.zip
+RUN unzip cvxopt-master.zip
+RUN mv cvxopt-master cvxopt
+RUN wget http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4.5.3.tar.gz
+RUN tar -xf SuiteSparse-4.5.3.tar.gz
+RUN export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse
