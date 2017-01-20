@@ -13,3 +13,7 @@ RUN wget http://www.netlib.org/lapack/lapack-3.7.0.tgz
 RUN tar zxvf lapack-3.7.0.tgz
 WORKDIR /opt/lapack-3.7.0
 RUN mv make.inc.example make.inc
+RUN sed -i 's/\#lib: blaslib variants lapacklib tmglib/lib: blaslib lapacklib tmglib/g' Makefile
+RUN sed -i 's/lib: lapacklib tmglib/\#lib: lapacklib tmglib/g' Makefile
+RUN make
+
