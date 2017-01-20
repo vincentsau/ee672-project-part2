@@ -37,4 +37,18 @@ RUN unzip cvxopt-master.zip
 RUN mv cvxopt-master cvxopt
 RUN wget http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4.5.3.tar.gz
 RUN tar -xf SuiteSparse-4.5.3.tar.gz
+
+WORKDIR /opt/cvxopt
+sed -i "s/BLAS_LIB_DIR = '\/usr/BLAS_LIB_DIR = '\/opt\/atlas/g" setup.py
+sed -i "s/BLAS_LIB = \['blas'\]/BLAS_LIB = \['cblas'\,'f77blas'\,'atlas'\]/g" setup.py
+RUN apt-get -y install python-dev
+RUN apt-get -y install gcc
+RUN apt-get -y install build-essential
+RUN apt-get -y install liblapack-dev
+WORKDIR /opt
 RUN export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse
+ENV export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse
+RUN export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse && cd cvxopt && python setup.py install
+
+EXPOSE 80
+
