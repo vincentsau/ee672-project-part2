@@ -1,3 +1,5 @@
 FROM ubuntu:14.04
 
+MAINTAINER vsfsf <sfsfsfs>
+
 WORKDIR /opt
