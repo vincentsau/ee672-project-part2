@@ -31,3 +31,4 @@ RUN make install
 
 #install cvxopt
 WORKDIR /opt
+RUN wget
