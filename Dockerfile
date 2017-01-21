@@ -18,6 +18,7 @@ RUN sed -i 's/lib: lapacklib tmglib/\#lib: lapacklib tmglib/g' Makefile
 RUN make
 
 #install atlas
+WORKDIR /opt
 RUN tar -jxvf atlas3.10.3.tar.bz2
 RUN mv ATLAS atlas_src
 WORKDIR /opt/atlas_src
