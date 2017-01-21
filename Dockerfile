@@ -47,8 +47,7 @@ RUN apt-get -y install gcc
 RUN apt-get -y install build-essential
 RUN apt-get -y install liblapack-dev
 WORKDIR /opt
-#RUN export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse
-#ENV export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse
+
 RUN export CVXOPT_SUITESPARSE_SRC_DIR=$(pwd)/SuiteSparse && cd cvxopt && python setup.py install
 
 EXPOSE 80
